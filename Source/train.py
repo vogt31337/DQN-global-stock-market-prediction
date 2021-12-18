@@ -31,8 +31,8 @@ class trainModel:
         self.DataX = DataX
         self.DataY = DataY
 
-        print 'X Data:  Comp#, Days# ', len( self.DataX ), len( self.DataX[0] )
-        print 'Y Data:  Comp#, Days# ', len( self.DataY ), len( self.DataY[0] )
+        print('X Data:  Comp#, Days# ', len( self.DataX ), len( self.DataX[0] ))
+        print('Y Data:  Comp#, Days# ', len( self.DataY ), len( self.DataY[0] ))
 
     def trainModel ( self, H,W, FSize, PSize, PStride, NumAction, M, Gamma  ):
 
@@ -123,7 +123,7 @@ class trainModel:
 
                 #2.3: print Loss 
                 if( b % ( 100 * self.B  ) == 0 ):
-                    print 'Loss: ' ,b, Opts[0] 
+                    print('Loss: ' ,b, Opts[0])
 
             #3: update iteration counter
             b   = b + 1
@@ -131,7 +131,7 @@ class trainModel:
             #4: save model 
             if( b >= self.maxiter ):
                 saver.save( sess, 'DeepQ' )
-                print 'Finish! '
+                print('Finish! ')
                 return 0
 
 
@@ -182,7 +182,7 @@ class trainModel:
         for t in range( Days ):
             cumAsset = round ( cumAsset + ( cumAsset * avgDailyR[t] * 0.01  ), 8 )
 
-        print 'cumAsset ',  cumAsset
+        print('cumAsset ',  cumAsset)
         return N, posChange, cumAsset
 
 
@@ -240,7 +240,7 @@ class trainModel:
         for t in range( Days ):
             cumAsset = round (cumAsset + ( cumAsset * avgDailyR[t] * 0.01  ), 8 )
 
-        print 'cumAsset ',  cumAsset
+        print('cumAsset ',  cumAsset)
         return N, posChange, cumAsset
 
 
@@ -267,7 +267,7 @@ class trainModel:
         saver.restore( sess, 'DeepQ' )
         Outcome     = self.validate_TopBottomK_Portfolio (  self.DataX, self.DataY, sess, rho_eta, state, isTrain, NumAction, H,W, TopK  )
 
-        print 'NumComp#: ',  Outcome[0],  'Transactions: ', Outcome[1]/2, 'cumulative asset',Outcome[2] 
+        print('NumComp#: ',  Outcome[0],  'Transactions: ', Outcome[1]/2, 'cumulative asset',Outcome[2])
         self.writeResult_daily( 'TestResult.txt', Outcome,  len ( self.DataX[0] ) -1  )
 
 
@@ -276,7 +276,7 @@ class trainModel:
         saver.restore( sess, 'DeepQ' )
         Outcome     = self.validate_Neutralized_Portfolio (  self.DataX, self.DataY, sess, rho_eta, state, isTrain, NumAction, H,W  )
 
-        print 'NumComp#: ',  Outcome[0],  'Transactions: ', Outcome[1]/2, 'cumulative asset',Outcome[2] 
+        print('NumComp#: ',  Outcome[0],  'Transactions: ', Outcome[1]/2, 'cumulative asset',Outcome[2])
         self.writeResult_daily ( 'TestResult.txt', Outcome, len( self.DataX[0] ) -1  )
 
  

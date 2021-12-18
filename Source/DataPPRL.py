@@ -28,7 +28,7 @@ class DataReaderRL:
 
         #for i in range( len(pathlist) ):
          #   print pathlist[i]
-        print 'numof all data : ', len( pathlist )
+        print('numof all data : ', len( pathlist ))
         return pathlist
 
  
@@ -76,7 +76,7 @@ class DataReaderRL:
         DataY   = list()
 
         if ( len(rawdata)-1) != (N*Days) :
-            print 'number of input data is invalid'
+            print('number of input data is invalid')
 
         cnt     = 0
         for c in range ( N ) :
